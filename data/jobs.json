@@ -1,0 +1,48 @@
+{
+  "lastUpdated": "2026-01-30T14:19:05.725311",
+  "source": "Multiple Official Government Sources",
+  "jobs": [
+    {
+      "id": "def_-5237277104068532429_1769782745.725234",
+      "title": "Indian Army - Latest Recruitment",
+      "organization": "Indian Army",
+      "department": "defence",
+      "qualification": "10th/12th/Graduate",
+      "location": "All India",
+      "postedDate": "2026-01-30",
+      "deadline": "2026-03-16",
+      "salary": "As per Defence Pay Matrix",
+      "officialUrl": "https://joinindianarmy.nic.in",
+      "notificationUrl": "https://joinindianarmy.nic.in/Authentication.aspx",
+      "applyUrl": "https://joinindianarmy.nic.in"
+    },
+    {
+      "id": "def_-5696793559993447039_1769782745.725286",
+      "title": "Indian Navy - Latest Recruitment",
+      "organization": "Indian Navy",
+      "department": "defence",
+      "qualification": "10th/12th/Graduate",
+      "location": "All India",
+      "postedDate": "2026-01-30",
+      "deadline": "2026-03-16",
+      "salary": "As per Defence Pay Matrix",
+      "officialUrl": "https://joinindiannavy.gov.in",
+      "notificationUrl": "https://joinindiannavy.gov.in/Authentication.aspx",
+      "applyUrl": "https://joinindiannavy.gov.in"
+    },
+    {
+      "id": "def_6873624420375977801_1769782745.725297",
+      "title": "Indian Air Force - Latest Recruitment",
+      "organization": "Indian Air Force",
+      "department": "defence",
+      "qualification": "10th/12th/Graduate",
+      "location": "All India",
+      "postedDate": "2026-01-30",
+      "deadline": "2026-03-16",
+      "salary": "As per Defence Pay Matrix",
+      "officialUrl": "https://indianairforce.nic.in",
+      "notificationUrl": "https://indianairforce.nic.in/Authentication.aspx",
+      "applyUrl": "https://indianairforce.nic.in"
+    }
+  ]
+}
