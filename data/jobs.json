@@ -1,9 +1,9 @@
 {
-  "lastUpdated": "2026-01-30T14:22:26.717125",
+  "lastUpdated": "2026-01-30T14:32:44.357993",
   "source": "Multiple Official Government Sources",
   "jobs": [
     {
-      "id": "rrb_-2092522399716792740",
+      "id": "rrb_2374815507301061959",
       "title": "Recruitment Notices",
       "organization": "Railway Recruitment Board",
       "department": "railway",
@@ -17,7 +17,7 @@
       "applyUrl": "https://rrbonlinereg.in"
     },
     {
-      "id": "rrb_8775746890994786227",
+      "id": "rrb_-3082216980666882890",
       "title": "Indicative notice of CEN 08/2025 regarding recruitment of isolsted categories",
       "organization": "Railway Recruitment Board",
       "department": "railway",
@@ -31,7 +31,7 @@
       "applyUrl": "https://rrbonlinereg.in"
     },
     {
-      "id": "def_-1810475871210902450_1769782946.717058",
+      "id": "def_5809762428133402081_1769783564.35793",
       "title": "Indian Army - Latest Recruitment",
       "organization": "Indian Army",
       "department": "defence",
@@ -45,7 +45,7 @@
       "applyUrl": "https://joinindianarmy.nic.in"
     },
     {
-      "id": "def_5773615651604667503_1769782946.717103",
+      "id": "def_-9172150358732397444_1769783564.357972",
       "title": "Indian Navy - Latest Recruitment",
       "organization": "Indian Navy",
       "department": "defence",
@@ -59,7 +59,7 @@
       "applyUrl": "https://joinindiannavy.gov.in"
     },
     {
-      "id": "def_-2447350856617188380_1769782946.717112",
+      "id": "def_-1673526703785407478_1769783564.357981",
       "title": "Indian Air Force - Latest Recruitment",
       "organization": "Indian Air Force",
       "department": "defence",
