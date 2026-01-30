@@ -1,0 +1,28 @@
+{
+  "sources": [
+    {
+      "name": "Staff Selection Commission",
+      "department": "central",
+      "state": "All India",
+      "status": "active"
+    },
+    {
+      "name": "Union Public Service Commission",
+      "department": "central",
+      "state": "All India",
+      "status": "active"
+    },
+    {
+      "name": "Railway Recruitment Board",
+      "department": "central",
+      "state": "All India",
+      "status": "active"
+    },
+    {
+      "name": "IBPS",
+      "department": "banking",
+      "state": "All India",
+      "status": "active"
+    }
+  ]
+}

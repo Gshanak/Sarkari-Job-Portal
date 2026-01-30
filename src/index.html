@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Sarkari Naukri - Govt Jobs</title>
+    
+    <!-- Capacitor -->
+    <script type="module" src="https://unpkg.com/@capacitor/core@5/dist/capacitor.js"></script>
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Pull to Refresh Indicator -->
+    <div id="pullRefresh" class="pull-refresh">
+        <div class="spinner-small"></div>
+        <span>Pull to refresh...</span>
+    </div>
+
+    <!-- Animated Background -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="glass-header">
+            <div class="logo">
+                <span class="flag">🇮🇳</span>
+                <h1>Sarkari Naukri</h1>
+            </div>
+            <div class="header-actions">
+                <button id="suggestSourceBtn" class="glass-btn suggest-btn">
+                    <span>➕</span>
+                </button>
+                <button id="shareBtn" class="glass-btn share-btn">
+                    <span>📤</span>
+                </button>
+                <div class="live-indicator">
+                    <span class="pulse"></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Section -->
+        <section class="search-section glass-panel">
+            <h2>Find Government Jobs</h2>
+            <div class="search-filters">
+                <div class="filter-group">
+                    <label>Qualification</label>
+                    <select id="qualification" class="glass-input">
+                        <option value="all">All Qualifications</option>
+                        <option value="10th">10th Pass</option>
+                        <option value="12th">12th Pass</option>
+                        <option value="diploma">Diploma</option>
+                        <option value="graduate">Graduate</option>
+                        <option value="postgraduate">Post Graduate</option>
+                        <option value="btech">B.Tech/BE</option>
+                        <option value="mtech">M.Tech/ME</option>
+                        <option value="phd">PhD</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label>Department</label>
+                    <select id="department" class="glass-input">
+                        <option value="all">All Departments</option>
+                        <option value="banking">Banking</option>
+                        <option value="railway">Railway</option>
+                        <option value="defence">Defence</option>
+                        <option value="ssc">SSC</option>
+                        <option value="upsc">UPSC</option>
+                        <option value="state">State Govt</option>
+                        <option value="police">Police</option>
+                        <option value="teaching">Teaching</option>
+                        <option value="psu">PSU</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Location</label>
+                    <select id="location" class="glass-input">
+                        <option value="all">All India</option>
+                        <option value="central">Central Govt</option>
+                        <option value="andhra-pradesh">Andhra Pradesh</option>
+                        <option value="bihar">Bihar</option>
+                        <option value="delhi">Delhi</option>
+                        <option value="gujarat">Gujarat</option>
+                        <option value="karnataka">Karnataka</option>
+                        <option value="maharashtra">Maharashtra</option>
+                        <option value="rajasthan">Rajasthan</option>
+                        <option value="tamil-nadu">Tamil Nadu</option>
+                        <option value="telangana">Telangana</option>
+                        <option value="up">Uttar Pradesh</option>
+                        <option value="west-bengal">West Bengal</option>
+                    </select>
+                </div>
+
+                <button id="searchBtn" class="glass-btn primary">
+                    <span>🔍 Search</span>
+                </button>
+            </div>
+
+            <div class="quick-filters">
+                <button class="chip" data-filter="today">📅 Today</button>
+                <button class="chip" data-filter="week">📆 Week</button>
+                <button class="chip" data-filter="10th">🎓 10th</button>
+                <button class="chip" data-filter="graduate">🎓 Grad</button>
+            </div>
+        </section>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar glass-panel">
+            <div class="stat">
+                <span class="stat-number" id="totalJobs">0</span>
+                <span class="stat-label">Jobs</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="todayJobs">0</span>
+                <span class="stat-label">Today</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="totalSources">0</span>
+                <span class="stat-label">Sources</span>
+            </div>
+        </div>
+
+        <!-- Active Sources -->
+        <section class="sources-section glass-panel">
+            <div class="section-header">
+                <h3>📡 Sources</h3>
+                <span class="badge" id="sourceCount">0</span>
+            </div>
+            <div id="sourcesContainer" class="sources-list">
+                <!-- Sources loaded dynamically -->
+            </div>
+        </section>
+
+        <!-- Jobs List -->
+        <section class="jobs-section">
+            <div class="section-header">
+                <h3>Latest Jobs</h3>
+                <select id="sortBy" class="glass-input small">
+                    <option value="newest">Newest</option>
+                    <option value="deadline">Deadline</option>
+                </select>
+            </div>
+            
+            <div id="jobsContainer" class="jobs-grid">
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading jobs...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="bottom-nav glass-panel">
+            <button class="nav-btn active" data-page="home">
+                <span>🏠</span>
+                <small>Home</small>
+            </button>
+            <button class="nav-btn" data-page="sources">
+                <span>📡</span>
+                <small>Sources</small>
+            </button>
+            <button class="nav-btn" data-page="saved">
+                <span>🔖</span>
+                <small>Saved</small>
+            </button>
+            <button class="nav-btn" data-page="settings">
+                <span>⚙️</span>
+                <small>Settings</small>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Suggest Source Modal -->
+    <div id="suggestModal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content glass-panel">
+            <div class="modal-header">
+                <h3>➕ Suggest Source</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            
+            <div class="modal-body">
+                <form id="suggestForm">
+                    <div class="form-group">
+                        <label>Website Name *</label>
+                        <input type="text" id="sourceName" class="glass-input" 
+                               placeholder="e.g., MPPSC, UKSSSC" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Website URL *</label>
+                        <input type="url" id="sourceUrl" class="glass-input" 
+                               placeholder="https://www.example.gov.in" required>
+                        
+                        <!-- RED WARNING NOTE -->
+                        <div class="warning-note">
+                            <span class="warning-icon">⚠️</span>
+                            <div class="warning-content">
+                                <strong class="warning-title">IMPORTANT - RED NOTE:</strong>
+                                <span class="warning-text">
+                                    Provide the <strong>CORRECT OFFICIAL URL</strong> only! 
+                                    We verify all submissions. Wrong URLs will be rejected. 
+                                    Only .gov.in or official org domains accepted.
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Department Type *</label>
+                        <select id="sourceDept" class="glass-input" required>
+                            <option value="">Select</option>
+                            <option value="state">State Govt</option>
+                            <option value="central">Central Govt</option>
+                            <option value="banking">Banking</option>
+                            <option value="railway">Railway</option>
+                            <option value="defence">Defence</option>
+                            <option value="police">Police</option>
+                            <option value="teaching">Teaching</option>
+                            <option value="psu">PSU</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>State (if State Govt)</label>
+                        <select id="sourceState" class="glass-input">
+                            <option value="">Select State</option>
+                            <option value="andhra-pradesh">Andhra Pradesh</option>
+                            <option value="bihar">Bihar</option>
+                            <option value="delhi">Delhi</option>
+                            <option value="gujarat">Gujarat</option>
+                            <option value="haryana">Haryana</option>
+                            <option value="karnataka">Karnataka</option>
+                            <option value="kerala">Kerala</option>
+                            <option value="madhya-pradesh">Madhya Pradesh</option>
+                            <option value="maharashtra">Maharashtra</option>
+                            <option value="odisha">Odisha</option>
+                            <option value="punjab">Punjab</option>
+                            <option value="rajasthan">Rajasthan</option>
+                            <option value="tamil-nadu">Tamil Nadu</option>
+                            <option value="telangana">Telangana</option>
+                            <option value="up">Uttar Pradesh</option>
+                            <option value="west-bengal">West Bengal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Your Email (optional)</label>
+                        <input type="email" id="userEmail" class="glass-input" 
+                               placeholder="For updates on your suggestion">
+                    </div>
+
+                    <button type="submit" class="glass-btn primary full-width">
+                        Submit Suggestion
+                    </button>
+                </form>
+
+                <!-- Alternative submission methods -->
+                <div class="alt-submission">
+                    <p>Or submit via:</p>
+                    <div class="alt-buttons">
+                        <a href="https://github.com/YOUR_USERNAME/sarkari-jobs-portal/issues/new?title=Suggest+New+Source&body=" 
+                           target="_blank" class="glass-btn small">
+                            🐙 GitHub Issue
+                        </a>
+                        <a href="mailto:suggestions@sarkarijobs.portal?subject=New Source Suggestion" 
+                           class="glass-btn small">
+                            ✉️ Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast glass-panel">
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
